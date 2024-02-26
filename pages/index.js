@@ -8,6 +8,10 @@ const url = 'https://www.course-api.com/react-tours-project'
 export default function Home() {
   const [loading,setLoading] = useState(true)
   const [tours,setTours] = useState([])
+  const removeTour = (id) => {
+    const newTours = tours.filter ((tour) => tour.id !==id)
+    setTours(newTours)
+  }
   const fetchTours = async () => {
     setLoading(true)
     try {
@@ -32,9 +36,17 @@ export default function Home() {
       </main>
     )
   }
+  if(tours.length === 0){
+    return (
+      <div className="title">
+        <h2>no tours left</h2>
+        <button className="btn" onClick={()=>fetchTours()}>Refresh</button>
+      </div>
+    )
+  }
   return (
     <main>
-     <Tours tours={tours}/>
+     <Tours tours={tours} removeTour={removeTour}/>
       
       
     </main>
