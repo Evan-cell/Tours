@@ -34,7 +34,7 @@ export default function Home() {
   }
   return (
     <main>
-     <Tours/>
+     <Tours tours={tours}/>
       
       
     </main>
